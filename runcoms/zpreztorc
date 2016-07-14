@@ -44,6 +44,7 @@ zstyle ':prezto:load' pmodule \
   'emacs' \
   'osx' \
   'syntax-highlighting' \
+  'percol' \
   'prompt'
 
 #
