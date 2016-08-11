@@ -16,6 +16,8 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias d='dirs -v | head -n 10'
+
 alias emacs-cn='LC_ALL=zh_CN.UTF-8 emacs'
 
 alias rsync='rsync -avz --progress'
