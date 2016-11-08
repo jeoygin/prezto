@@ -109,6 +109,8 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/gnu-sed/l
 export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$SCALA_HOME/bin:$SBT_HOME/bin:$ANDROID_HOME/tools:$ANDROID_NDK_HOME:~/.cabal/bin:$GOPATH/bin:$HOME/.rvm/bin:$PATH
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/bin:/opt/develop/jetbrains/idea-IU/bin:/opt/develop/jetbrains/WebStorm/bin:$PATH
 
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 function activate-python() {
@@ -131,7 +133,15 @@ function activate-desk() {
   # Hook for desk activation
   [ -n "$DESK_ENV" ] && source "$DESK_ENV"
 }
-function down-tar() {
-  [ $# -lt 1 ] && echo "down-tar <tar URL>" && return -1
+function find-image() {
+  [ $# -lt 1 ] && echo "find-image <DIR>" && return -1
+  find "$1" -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png'
+}
+function packup() {
+  [ $# -lt 1 ] && echo "packup <FILES>" && return -1
+  tar zc "$@" | mupload -f -
+}
+function packdown() {
+  [ $# -lt 1 ] && echo "packdown <tar URL>" && return -1
   curl "$1" | tar zx
 }
