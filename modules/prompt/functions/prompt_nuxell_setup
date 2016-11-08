@@ -86,9 +86,11 @@ function prompt_nuxell_setup {
 
   # Define prompts.
   PROMPT="
-${_prompt_nuxell_colors[3]}%n%f at ${_prompt_nuxell_colors[2]}%m%f in ${_prompt_nuxell_colors[5]}%~%f "'${vcs_info_msg_0_}'" 
-"'$python_info[virtualenv]'''"${_prompt_nuxell_colors[1]}[${_prompt_nuxell_colors[5]}%D{%H:%M:%S}${_prompt_nuxell_colors[1]}]%f$ "
+${_prompt_nuxell_colors[3]}%n%f at ${_prompt_nuxell_colors[2]}%m%f in ${_prompt_nuxell_colors[5]}%~%f "'${vcs_info_msg_0_}'"
+"'$python_info[virtualenv]'"$ "
+  RPROMPT='${_prompt_nuxell_colors[1]}[${_prompt_nuxell_colors[5]}%D{%H:%M:%S}${_prompt_nuxell_colors[1]}]%f'
   SPROMPT='zsh: correct ${_prompt_nuxell_colors[3]}%R%f to ${_prompt_nuxell_colors[5]}%r%f [nyae]? '
 }
 
 prompt_nuxell_setup "$@"
+
