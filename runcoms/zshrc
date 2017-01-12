@@ -13,3 +13,5 @@ fi
 # Customize to your needs...
 setopt CORRECT
 setopt CLOBBER
+
+source "${HOME}/.zsh_aliases"
