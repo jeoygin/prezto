@@ -128,9 +128,12 @@ which brew >/dev/null 2>&1 && [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 function activate-python() {
-  source /usr/local/bin/virtualenvwrapper.sh
-  # export WORKON_HOME=$HOME/.virtualenvs
-  # source ~/.local/bin/virtualenvwrapper.sh
+  export WORKON_HOME=$HOME/.virtualenvs
+  if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+  else
+    source ~/.local/bin/virtualenvwrapper.sh
+  fi
   workon python27
 }
 function activate-rvm() {
