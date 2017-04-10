@@ -18,6 +18,8 @@ alias l='ls -CF'
 
 alias d='dirs -v | head -n 10'
 
+alias sudo='sudo '
+
 alias emacs-cn='LC_ALL=zh_CN.UTF-8 emacs'
 
 alias rsync='rsync -avz --progress'
@@ -58,4 +60,5 @@ alias gsetup="git config user.name 'Jeoygin'; git config user.email 'jeoygin@gma
 alias ss1='ssh -t wangrj@access1 ssh'
 alias ss2='ssh -t wangrj@access2 ssh'
 
-alias imgtk='/Users/jeoygin/projects/image-toolkit/build/bin/imgtk'
+alias imgtk='~/projects/image-toolkit/build/bin/imgtk'
+alias emacs='emacs -nw'
