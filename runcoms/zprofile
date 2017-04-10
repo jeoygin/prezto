@@ -90,7 +90,6 @@ java_homes=(
 )
 for h in $java_homes
 do
-  print $h
   if [[ -e "$h/bin/java" ]]; then
     export JAVA_HOME="$h"
     break
@@ -122,7 +121,7 @@ export NODE_PATH=~/.nvm/versions/node/v5.0.0/lib/node_modules
 
 export MAGICK_HOME="/opt/ImageMagick-7.0.1"
 
-export PYTHONPATH="$HOME/local/lib/python2.7/site-packages
+export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
 
 export LD_LIBRARY_PATH=~/usr/lib:/usr/local/cuda/lib64/:/usr/lib64/atlas/:/usr/local/cuda/lib/:/usr/lib64/
 export C_INCLUDE_PATH=~/usr/include:/usr/local/cuda/include/
