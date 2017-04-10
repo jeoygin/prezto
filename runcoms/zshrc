@@ -21,7 +21,7 @@ function activate-python() {
   if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
     source /usr/local/bin/virtualenvwrapper.sh
   else
-    source ~/.local/bin/virtualenvwrapper.sh
+    source ~/local/bin/virtualenvwrapper.sh
   fi
   workon python27
 }
