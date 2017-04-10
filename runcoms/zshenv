@@ -5,6 +5,66 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+export TERM="xterm-256color"
+export LC_CTYPE="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+java_homes=(
+  /Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home
+  /usr/java/jdk
+)
+for h in $java_homes
+do
+  if [[ -e "$h/bin/java" ]]; then
+    export JAVA_HOME="$h"
+    break
+  fi
+done
+export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
+export M2_HOME=/opt/develop/maven/3.3.9
+export MAVEN_OPTS="-Xms256m -Xmx1024m -Dfile.encoding=UTF-8"
+
+export SCALA_HOME=/opt/develop/scala/current
+
+export SBT_HOME=/opt/develop/sbt
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
+export NDK_ROOT="$ANDROID_NDK_HOME"
+
+export CUDA_HOME=/usr/local/cuda
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
+
+export GOPATH=~/go
+
+export GTAGSLIBPATH=$HOME/.gtags/
+
+export NODE_PATH=~/.nvm/versions/node/v5.0.0/lib/node_modules
+
+export MAGICK_HOME="/opt/ImageMagick-7.0.1"
+
+export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
+
+export LD_LIBRARY_PATH=~/usr/lib:/usr/local/cuda/lib64/:/usr/lib64/atlas/:/usr/local/cuda/lib/:/usr/lib64/
+export C_INCLUDE_PATH=~/usr/include:/usr/local/cuda/include/
+export CPLUS_INCLUDE_PATH=~/usr/include:/usr/local/cuda/include/
+export LIBRARY_PATH=~/usr/lib:/usr/lib64/atlas/:/usr/local/cuda/lib64/:/usr/lib64/
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig/
+
+export LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LD_LIBRARY_PATH
+export C_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
+
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"

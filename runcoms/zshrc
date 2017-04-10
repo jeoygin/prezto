@@ -13,3 +13,77 @@ fi
 # Customize to your needs...
 setopt CORRECT
 setopt CLOBBER
+
+source ~/.zalias
+
+function activate-python() {
+  export WORKON_HOME=$HOME/.virtualenvs
+  if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+  else
+    source ~/.local/bin/virtualenvwrapper.sh
+  fi
+  workon python27
+}
+function activate-rvm() {
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+}
+function activate-desk() {
+  # Hook for desk activation
+  [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true
+}
+function activate-nvm() {
+  export NVM_DIR="/Users/jeoygin/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+}
+function activate-sdk() {
+  #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+  export SDKMAN_DIR="/Users/jeoygin/.sdkman"
+  [[ -s "/Users/jeoygin/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jeoygin/.sdkman/bin/sdkman-init.sh"
+}
+function activate-desk() {
+  # Hook for desk activation
+  [ -n "$DESK_ENV" ] && source "$DESK_ENV"
+}
+function find-image() {
+  [ $# -lt 1 ] && echo "find-image <DIR>" && return -1
+  find "$@" -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png'
+}
+function pack() {
+  [ $# -lt 1 ] && echo "$0 <FILES>" && return -1
+  _pack="${1}.tar.gz"
+  if [[ $# -gt 1 ]]; then
+    _pack="pack.tar.gz"
+  fi
+  tar zcf "$_pack" "$@"
+}
+function packup() {
+  [ $# -lt 1 ] && echo "packup <FILES>" && return -1
+  tar zc "$@" | mupload -f -
+}
+function packdown() {
+  [ $# -lt 1 ] && echo "packdown <tar URL>" && return -1
+  curl "$1" | tar zx
+}
+function sample() {
+  _n=${1:-10}
+  shuf | head -n ${_n}
+}
+function imgtk-ls() {
+  [ $# -lt 1 ] && echo "imgtk-ls <DB>" && return -1
+  imgtk -s "$1" -c list
+}
+function imgtk-save() {
+  [ $# -lt 2 ] && echo "imgtk-ls <SRC DB> <DST DB>" && return -1
+  imgtk -s "$1" -d "$2" -c save
+}
+function imgtk-cat() {
+  [ $# -lt 1 ] && echo "imgtk-ls <DB>" && return -1
+  imgtk -s "$1" -c cat
+}
+function imgtk-1c() {
+  awk '{print $1}' "$@"
+}
+function imgtk-2c() {
+  awk '{print $1"::"$1}' "$@"
+}
