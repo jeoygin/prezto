@@ -81,6 +81,4 @@ export PATH=$HOME/bin:$HOME/local/bin:$HOME/.local/bin:/usr/local/opt/coreutils/
 which brew >/dev/null 2>&1 && [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
-# activate-python
-
 autoload -U compinit && compinit -u

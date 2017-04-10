@@ -22,5 +22,6 @@ if [[ -o INTERACTIVE && -t 2 ]]; then
     fortune -s
     print
   fi
-
 fi >&2
+
+# activate-python
