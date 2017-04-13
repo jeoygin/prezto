@@ -47,6 +47,8 @@ export NODE_PATH=~/.nvm/versions/node/v5.0.0/lib/node_modules
 
 export MAGICK_HOME="/opt/ImageMagick-7.0.1"
 
+export VIRTUALENVWRAPPER_PYTHON=`which python`
+export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
 export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
 
 export LD_LIBRARY_PATH=~/usr/lib:/usr/local/cuda/lib64/:/usr/lib64/atlas/:/usr/local/cuda/lib/:/usr/lib64/

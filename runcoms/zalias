@@ -55,7 +55,7 @@ alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
 alias glggap="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative --decorate --all"
-alias gsetup="git config user.name 'Jeoygin'; git config user.email 'jeoygin@gmail.com'"
+alias gsetup="git config user.name 'Jeoygin Wang'; git config user.email 'jeoygin@gmail.com'"
 
 alias ss1='ssh -t wangrj@access1 ssh'
 alias ss2='ssh -t wangrj@access2 ssh'
