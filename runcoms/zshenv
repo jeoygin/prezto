@@ -12,6 +12,16 @@ export LANG="en_US.UTF-8"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+ostype() { echo $OSTYPE | tr '[A-Z]' '[a-z]'; }
+
+SHELL_PLATFORM='unknown'
+case "$(ostype)" in
+  *'linux'*  ) SHELL_PLATFORM='linux' ;;
+  *'darwin'* ) SHELL_PLATFORM='osx' ;;
+  *'bsd'*    ) SHELL_PLATFORM='bsd' ;;
+esac
+export SHELL_PLATFORM
+
 java_homes=(
   /Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home
   /usr/java/jdk
@@ -51,21 +61,23 @@ export VIRTUALENVWRAPPER_PYTHON=`which python`
 export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
 export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
 
-export LD_LIBRARY_PATH=~/usr/lib:/usr/local/cuda/lib64/:/usr/lib64/atlas/:/usr/local/cuda/lib/:/usr/lib64/
+export LD_LIBRARY_PATH=~/usr/lib:/usr/local/cuda/lib64/:/usr/lib64/atlas/:/usr/local/cuda/lib/
 export C_INCLUDE_PATH=~/usr/include:/usr/local/cuda/include/
 export CPLUS_INCLUDE_PATH=~/usr/include:/usr/local/cuda/include/
-export LIBRARY_PATH=~/usr/lib:/usr/lib64/atlas/:/usr/local/cuda/lib64/:/usr/lib64/
+export LIBRARY_PATH=~/usr/lib:/usr/lib64/atlas/:/usr/local/cuda/lib64/
 
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig/
 
-export LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LIBRARY_PATH
-export LD_LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LD_LIBRARY_PATH
-export C_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
-
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+if [[ "$SHELL_PLATFORM" == 'osx' ]]; then
+  export LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LIBRARY_PATH
+  export LD_LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LD_LIBRARY_PATH
+  export C_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
+  export CPLUS_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
+
+  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+fi
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
