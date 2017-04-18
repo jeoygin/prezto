@@ -61,7 +61,7 @@ function pack() {
 }
 function packup() {
   [ $# -lt 1 ] && echo "packup <FILES>" && return -1
-  tar zc "$@" | mupload -f -
+  tar zc "$@" | mupload -o pack.tar.gz -f -
 }
 function packdown() {
   [ $# -lt 1 ] && echo "packdown <tar URL>" && return -1
