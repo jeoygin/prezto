@@ -51,21 +51,39 @@ function find-image() {
   [ $# -lt 1 ] && echo "find-image <DIR>" && return -1
   find "$@" -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png'
 }
+function random-string() {
+  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-16} | head -n 1
+}
+function random-number() {
+  cat /dev/urandom | tr -dc '0-9' | fold -w ${1:-16} | head -n 1
+}
+function download_and_extract() {
+  local usage="Usage: download_and_extract URL DIR"
+  local url="${1:?${usage}}"
+  local dir="${2:?${usage}}"
+  echo "downloading ${url}" >&2
+  mkdir -p "${dir}"
+  curl -Ls "${url}" | tar -C "${dir}" --strip-components=1 -xz
+}
 function pack() {
-  [ $# -lt 1 ] && echo "$0 <FILES>" && return -1
-  _pack="${1}.tar.gz"
+  local usage="Usage: pack FILES"
+  local pack="${1:?${usage}}.tar.gz"
   if [[ $# -gt 1 ]]; then
-    _pack="pack.tar.gz"
+    pack="pack.tar.gz"
   fi
-  tar zcf "$_pack" "$@"
+  echo "packing $@ => $pack" >&2
+  tar zcf "$pack" "$@"
 }
 function packup() {
-  [ $# -lt 1 ] && echo "packup <FILES>" && return -1
-  tar zc "$@" | mupload -o pack.tar.gz -f -
+  [ $# -lt 1 ] && echo "Usage: packup FILES" && return -1
+  echo "archiving and uploading $@" >&2
+  tar zc "$@" | mupload -o "pack-$( random-string 8 ).tar.gz" -f -
 }
 function packdown() {
-  [ $# -lt 1 ] && echo "packdown <tar URL>" && return -1
-  curl "$1" | tar zx
+  local usage="Usage: packdow TAR_URL"
+  local url="${1:?${usage}}"
+  echo "downloading $url" >&2
+  curl -L --progress-bar "$1" | tar zx
 }
 function sample() {
   _n=${1:-10}
