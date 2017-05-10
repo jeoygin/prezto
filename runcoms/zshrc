@@ -51,6 +51,10 @@ function find-image() {
   [ $# -lt 1 ] && echo "find-image <DIR>" && return -1
   find "$@" -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png'
 }
+function shufn() {
+  local nb="${1:-1}"
+  shuf | head -n "$nb"
+}
 function random-string() {
   cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-16} | head -n 1
 }
