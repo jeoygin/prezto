@@ -62,3 +62,4 @@ alias ss2='ssh -t wangrj@access2 ssh'
 
 alias imgtk='~/projects/image-toolkit/build/bin/imgtk'
 alias emacs='emacs -nw'
+alias unbrew='export PATH=${PATH//\.linuxbrew/}'
