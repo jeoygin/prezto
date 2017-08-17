@@ -57,26 +57,22 @@ export NODE_PATH=~/.nvm/versions/node/v5.0.0/lib/node_modules
 
 export MAGICK_HOME="/opt/ImageMagick-7.0.1"
 
-export VIRTUALENVWRAPPER_PYTHON=`which python`
-export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
-export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
-
-export LD_LIBRARY_PATH=~/usr/lib:/usr/local/cuda/lib64/:/usr/lib64/atlas/:/usr/local/cuda/lib/
-export C_INCLUDE_PATH=~/usr/include:/usr/local/cuda/include/
-export CPLUS_INCLUDE_PATH=~/usr/include:/usr/local/cuda/include/
-export LIBRARY_PATH=~/usr/lib:/usr/lib64/atlas/:/usr/local/cuda/lib64/
-
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig/
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+export LIBRARY_PATH=~/usr/lib
+export LD_LIBRARY_PATH=~/usr/lib
+export C_INCLUDE_PATH=~/usr/include
+export CPLUS_INCLUDE_PATH=~/usr/include
 
 if [[ "$SHELL_PLATFORM" == 'osx' ]]; then
   export LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LIBRARY_PATH
   export LD_LIBRARY_PATH=/usr/local/ssl/macos-x86_64/lib/:$LD_LIBRARY_PATH
   export C_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
-  export CPLUS_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$C_INCLUDE_PATH
+  export CPLUS_INCLUDE_PATH=/usr/local/ssl/macos-x86_64/include/:$CPLUS_INCLUDE_PATH
 
-  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+#  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 fi
 
 export PATH="$CUDA_HOME/bin:/usr/local/ssl/macos-x86_64/bin/:$PATH"
@@ -84,7 +80,15 @@ export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$SCALA_HOME/bin:$SBT_HOME/bin:~/.cabal/b
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/25.0.2:$ANDROID_NDK_HOME/bin:$PATH
 export PATH=$HOME/bin:$HOME/local/bin:$HOME/.local/bin:$HOME/.linuxbrew/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/bin:/opt/develop/jetbrains/idea-IU/bin:/opt/develop/jetbrains/WebStorm/bin:$PATH
 
+export VIRTUALENVWRAPPER_PYTHON=`which python`
+export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
+export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
+
+if [[ -s "${HOME}/.zcustom" ]]; then
+  source "${HOME}/.zcustom"
 fi

@@ -57,9 +57,12 @@ alias -s bz2='tar -xjvf'
 alias glggap="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative --decorate --all"
 alias gsetup="git config user.name 'Jeoygin Wang'; git config user.email 'jeoygin@gmail.com'"
 
+which pip >/dev/null 2>&1 || alias pip='python -m pip'
+
 alias ss1='ssh -t wangrj@access1 ssh'
 alias ss2='ssh -t wangrj@access2 ssh'
 
 alias imgtk='~/projects/image-toolkit/build/bin/imgtk'
-alias emacs='emacs -nw'
+alias emacs='emacs -nw --no-desktop'
 alias unbrew='export PATH=${PATH//\.linuxbrew/}'
+alias 7zpass='7z a -ms=on -mhe=on -p'
