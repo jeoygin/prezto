@@ -48,6 +48,9 @@ function activate-desk() {
   # Hook for desk activation
   [ -n "$DESK_ENV" ] && source "$DESK_ENV"
 }
+function activate-antigen() {
+  [[ -s "${HOME}/local/bin/antigen.zsh" ]] && source "${HOME}/local/bin/antigen.zsh"
+}
 function find-image() {
   [ $# -lt 1 ] && echo "find-image <DIR>" && return -1
   find "$@" -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png'
