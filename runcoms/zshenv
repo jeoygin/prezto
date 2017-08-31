@@ -5,7 +5,9 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-export TERM="xterm-256color"
+if [[ $TERM != tmux* && $TERM != xterm* && $TERM != screen* ]]; then
+  export TERM="xterm-256color"
+fi
 export LC_CTYPE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
