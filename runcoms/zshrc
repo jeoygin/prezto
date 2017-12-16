@@ -51,6 +51,9 @@ function activate-desk() {
 function activate-antigen() {
   [[ -s "${HOME}/local/bin/antigen.zsh" ]] && source "${HOME}/local/bin/antigen.zsh"
 }
+funciton activate-fuck() {
+  eval "$(thefuck --alias)"
+}
 function find-image() {
   [ $# -lt 1 ] && echo "find-image <DIR>" && return -1
   find "$@" -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png'
@@ -115,3 +118,4 @@ function imgtk-1c() {
 function imgtk-2c() {
   awk '{print $1"::"$1}' "$@"
 }
+
