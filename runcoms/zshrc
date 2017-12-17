@@ -2,13 +2,31 @@
 # Executes commands at the start of an interactive session.
 #
 # Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Jeoygin Wang <jeoygin@gmail.com>
 #
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# Source zplug
+if [[ -s "${ZPLUG_HOME:-$HOME/.zplug}/init.zsh" ]]; then
+  source "${ZPLUG_HOME:-$HOME}/.zplug/init.zsh"
+fi
+
+zplug "supercrabtree/k"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
 
 # Customize to your needs...
 setopt CORRECT
