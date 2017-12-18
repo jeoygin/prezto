@@ -62,6 +62,12 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
+alias lltr='ls -ltr'
+alias psef='ps -ef'
+alias psefg='ps -ef | grep'
+alias nstl='netstat -ntl'
+alias nstlp='netstat -ntlp'
+
 alias glggap="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative --decorate --all"
 alias gsetup="git config user.name 'Jeoygin Wang'; git config user.email 'jeoygin@gmail.com'"
 
