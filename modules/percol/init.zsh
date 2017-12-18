@@ -233,7 +233,7 @@ zle -N percol_cd_repository
 # Define useful commands
 # ------------------------------------------------------------
 
-function ppgrep() {
+function percol_pgrep() {
     if [[ $1 == "" ]]; then
         PERCOL=percol
     else
@@ -242,12 +242,12 @@ function ppgrep() {
     ps aux | eval $PERCOL | awk '{ print $2 }'
 }
 
-function ppkill() {
+function percol_pkill() {
     if [[ $1 =~ "^-" ]]; then
         QUERY=""            # options only
     else
         QUERY=$1            # with a query
         [[ $# > 0 ]] && shift
     fi
-    ppgrep $QUERY | xargs kill $*
+    percol_pgrep $QUERY | xargs kill $*
 }

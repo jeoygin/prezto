@@ -39,6 +39,8 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'syntax-highlighting' \
   'percol' \
+  'fasd' \
+  'fzf' \
   'prompt'
 
 #
