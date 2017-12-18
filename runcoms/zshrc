@@ -12,10 +12,17 @@ fi
 
 # Source zplug
 if [[ -s "${ZPLUG_HOME:-$HOME/.zplug}/init.zsh" ]]; then
-  source "${ZPLUG_HOME:-$HOME}/.zplug/init.zsh"
+  source "${ZPLUG_HOME:-$HOME/.zplug}/init.zsh"
 fi
 
-zplug "supercrabtree/k"
+# k is a Zsh script to make directory listings more readable, adding Git status, fileweight colors and rotting dates
+# zplug "supercrabtree/k"
+
+# Jump back to a specific directory, without doing `cd ../../..`
+zplug "Tarrasch/zsh-bd"
+
+# A next-generation cd command with an interactive filter
+zplug "b4b4r07/enhancd", use:init.sh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -25,8 +32,17 @@ if ! zplug check --verbose; then
     fi
 fi
 
+if zplug check Tarrasch/zsh-bd; then
+    . ~/.zplug/repos/Tarrasch/zsh-bd/bd.zsh
+fi
+
+if zplug check b4b4r07/enhancd; then
+    export ENHANCD_FILTER=fzf-tmux
+    . ~/.zplug/repos/b4b4r07/enhancd/init.sh
+fi
+
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+# zplug load
 
 # Customize to your needs...
 setopt CORRECT
@@ -137,3 +153,21 @@ function imgtk-2c() {
   awk '{print $1"::"$1}' "$@"
 }
 
+function ppgrep() {
+    if [[ $1 == "" ]]; then
+        FINDER=fzf-tmux
+    else
+        FINDER="fzf-tmux --query $1"
+    fi
+    ps aux | eval $FINDER | awk '{ print $2 }'
+}
+
+function ppkill() {
+  if [[ $1 =~ "^-" ]]; then
+    QUERY=""            # options only
+  else
+    QUERY=$1            # with a query
+    [[ $# > 0 ]] && shift
+  fi
+  ppgrep $QUERY | xargs kill $*
+}
