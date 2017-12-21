@@ -50,6 +50,8 @@ setopt CLOBBER
 
 source ~/.zalias
 
+compdef _tmux tmux.sh
+
 function activate-python() {
   export WORKON_HOME=$HOME/.virtualenvs
   if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
