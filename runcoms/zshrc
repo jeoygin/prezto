@@ -13,36 +13,36 @@ fi
 # Source zplug
 if [[ -s "${ZPLUG_HOME:-$HOME/.zplug}/init.zsh" ]]; then
   source "${ZPLUG_HOME:-$HOME/.zplug}/init.zsh"
+
+  # k is a Zsh script to make directory listings more readable, adding Git status, fileweight colors and rotting dates
+  # zplug "supercrabtree/k"
+  
+  # Jump back to a specific directory, without doing `cd ../../..`
+  zplug "Tarrasch/zsh-bd"
+  
+  # A next-generation cd command with an interactive filter
+  zplug "b4b4r07/enhancd", use:init.sh
+  
+  # Install plugins if there are plugins that have not been installed
+  if ! zplug check --verbose; then
+      printf "Install? [y/N]: "
+      if read -q; then
+          echo; zplug install
+      fi
+  fi
+  
+  if zplug check Tarrasch/zsh-bd; then
+      . ~/.zplug/repos/Tarrasch/zsh-bd/bd.zsh
+  fi
+  
+  if zplug check b4b4r07/enhancd; then
+      export ENHANCD_FILTER=fzf-tmux
+      . ~/.zplug/repos/b4b4r07/enhancd/init.sh
+  fi
+  
+  # Then, source plugins and add commands to $PATH
+  # zplug load
 fi
-
-# k is a Zsh script to make directory listings more readable, adding Git status, fileweight colors and rotting dates
-# zplug "supercrabtree/k"
-
-# Jump back to a specific directory, without doing `cd ../../..`
-zplug "Tarrasch/zsh-bd"
-
-# A next-generation cd command with an interactive filter
-zplug "b4b4r07/enhancd", use:init.sh
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-if zplug check Tarrasch/zsh-bd; then
-    . ~/.zplug/repos/Tarrasch/zsh-bd/bd.zsh
-fi
-
-if zplug check b4b4r07/enhancd; then
-    export ENHANCD_FILTER=fzf-tmux
-    . ~/.zplug/repos/b4b4r07/enhancd/init.sh
-fi
-
-# Then, source plugins and add commands to $PATH
-# zplug load
 
 # Customize to your needs...
 setopt CORRECT
