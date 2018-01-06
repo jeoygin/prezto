@@ -80,3 +80,5 @@ alias imgtk='~/projects/image-toolkit/build/bin/imgtk'
 alias emacs='emacs -nw --no-desktop'
 alias unbrew='export PATH=${PATH//\.linuxbrew/}'
 alias 7zpass='7z a -ms=on -mhe=on -p'
+
+alias ff='fuzzy-finder'
