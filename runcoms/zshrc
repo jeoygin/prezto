@@ -155,13 +155,16 @@ function imgtk-2c() {
   awk '{print $1"::"$1}' "$@"
 }
 
+function fuzzy-finder() {
+  local _options=()
+  if [[ $# -gt 0 ]]; then
+    _options=( $_options "-q $@" )
+  fi
+  ${FUZZY_FINDER:-fzf-tmux} "${_options[@]}"
+}
+
 function ppgrep() {
-    if [[ $1 == "" ]]; then
-        FINDER=fzf-tmux
-    else
-        FINDER="fzf-tmux --query $1"
-    fi
-    ps aux | eval $FINDER | awk '{ print $2 }'
+    ps aux | fuzzy-finder "$@" | awk '{ print $2 }'
 }
 
 function ppkill() {
@@ -172,4 +175,12 @@ function ppkill() {
     [[ $# > 0 ]] && shift
   fi
   ppgrep $QUERY | xargs kill $*
+}
+
+function cdpp() {
+  local _personal_projects_root="${PERSONAL_PROJECT_ROOT:-$HOME/projects/personal}"
+  local _project=$( ls "$_personal_projects_root" 2>/dev/null | fuzzy-finder )
+  if [[ -n "$_project" ]]; then
+    cd "$_personal_projects_root/$_project"
+  fi
 }
