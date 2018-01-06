@@ -179,7 +179,7 @@ function ppkill() {
 
 function cdpp() {
   local _personal_projects_root="${PERSONAL_PROJECT_ROOT:-$HOME/projects/personal}"
-  local _project=$( ls "$_personal_projects_root" 2>/dev/null | fuzzy-finder )
+  local _project=$( ls "$_personal_projects_root" 2>/dev/null | fuzzy-finder "$@")
   if [[ -n "$_project" ]]; then
     cd "$_personal_projects_root/$_project"
   fi
