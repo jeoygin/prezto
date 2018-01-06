@@ -160,7 +160,7 @@ function fuzzy-finder() {
   if [[ $# -gt 0 ]]; then
     _options=( $_options "-q $@" )
   fi
-  ${FUZZY_FINDER:-fzf-tmux} "${_options[@]}"
+  eval ${FUZZY_FINDER:-fzf-tmux} "${_options[@]}"
 }
 
 function ppgrep() {
