@@ -156,7 +156,7 @@ function imgtk-2c() {
 }
 
 function fuzzy-finder() {
-  local _options=()
+  declare -a _options
   if [[ $# -gt 0 ]]; then
     _options=( $_options "-q \"$@\"" )
   fi
@@ -190,6 +190,10 @@ function cdsd() {
   fi
 }
 
+function cdp() {
+  cdsd "${PROJECTS_ROOT:-$HOME/projects}" "$@"
+}
+
 function cdpp() {
-  cdsd "${PERSONAL_PROJECT_ROOT:-$HOME/projects/personal}" "$@"
+  cdsd "${PERSONAL_PROJECTS_ROOT:-$HOME/projects/personal}" "$@"
 }
