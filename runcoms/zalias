@@ -16,7 +16,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
-# alias d='dirs -v | head -n 10'
+alias ds='dirs -v | head -n 10'
 
 alias sudo='sudo '
 
