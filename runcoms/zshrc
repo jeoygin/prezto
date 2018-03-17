@@ -178,13 +178,14 @@ function ppkill() {
 }
 
 function cdsd() {
+  local _dir="."
   if [[ $# -gt 0 ]]; then
-    local _dir="$1"
+    _dir="$1"
     shift
-    local _sub_dir=$( ls "$_dir" 2>/dev/null | fuzzy-finder "$@")
-    if [[ -n "$_sub_dir" ]]; then
-      cd "$_dir/$_sub_dir"
-    fi
+  fi
+  local _sub_dir=$( ls -F "$_dir" 2>/dev/null | grep '/$' | fuzzy-finder "$@")
+  if [[ -n "$_sub_dir" ]]; then
+    cd "$_dir/$_sub_dir"
   fi
 }
 
