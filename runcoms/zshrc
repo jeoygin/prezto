@@ -183,7 +183,7 @@ function cdsd() {
     _dir="$1"
     shift
   fi
-  local _sub_dir=$( ls -F "$_dir" 2>/dev/null | grep '/$' | fuzzy-finder "$@")
+  local _sub_dir=$( ls -F "$_dir" 2>/dev/null | grep '[/@]$' | sed 's:@$::g' | fuzzy-finder "$@")
   if [[ -n "$_sub_dir" ]]; then
     cd "$_dir/$_sub_dir"
   fi
