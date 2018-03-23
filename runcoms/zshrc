@@ -198,3 +198,10 @@ function cdpp() {
 }
 
 [[ -s "${HOME}/.zcustom" ]] && source "${HOME}/.zcustom"
+
+fpath=(
+  ~/.zsh/completion
+  $fpath
+)
+
+autoload -U compinit && compinit -u

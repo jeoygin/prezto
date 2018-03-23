@@ -42,10 +42,9 @@ typeset -gU cdpath fpath mailpath path
 # )
 
 # Set the list of directories that completion searches.
-fpath=(
-  ~/.zsh/completion
-  $fpath
-)
+# fpath=(
+#   $fpath
+# )
 
 # Set the list of directories that Zsh searches for programs.
 path=(
@@ -87,5 +86,3 @@ export PATH=$HOME/bin:$HOME/local/bin:$HOME/.local/bin:$HOME/.linuxbrew/bin:/usr
 # autojump
 which brew >/dev/null 2>&1 && [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
-
-autoload -U compinit && compinit -u
