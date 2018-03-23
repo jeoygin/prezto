@@ -196,3 +196,5 @@ function cdp() {
 function cdpp() {
   cdsd "${PERSONAL_PROJECTS_ROOT:-$HOME/projects/personal}" "$@"
 }
+
+[[ -s "${HOME}/.zcustom" ]] && source "${HOME}/.zcustom"
