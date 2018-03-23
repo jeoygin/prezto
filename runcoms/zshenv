@@ -25,7 +25,7 @@ esac
 export SHELL_PLATFORM
 
 java_homes=(
-  /Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home
+  /Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
   /usr/java/jdk
 )
 for h in $java_homes
@@ -86,10 +86,6 @@ export PATH=$HOME/bin:$HOME/local/bin:$HOME/.local/bin:$HOME/.linuxbrew/bin:/usr
 export VIRTUALENVWRAPPER_PYTHON=`which python`
 export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
 export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
-
-if [[ -s "${HOME}/.zcustom" ]]; then
-  source "${HOME}/.zcustom"
-fi
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
