@@ -88,3 +88,4 @@ bindkey '^R' fzf-history-widget
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source "${0:h}/git.zsh" || return 1
