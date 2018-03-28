@@ -177,13 +177,39 @@ function ppkill() {
   ppgrep $QUERY | xargs kill $*
 }
 
+function find-file() {
+  declare -a _options
+  if [[ -z "${NOT_FOLLOW:-}" ]]; then
+    _options=( -L )
+  fi
+  declare -a _exps
+  if [[ -z "${SHOW_HIDDEN_FILES:-}" ]]; then
+    _exps=( -not -path '*/\.*' )
+  fi
+  find "${_options[@]}" "${1:-.}" -type "${FILE_TYPE:-f}" \
+    -mindepth ${MINDEPTH:-1} -maxdepth ${MAXDEPTH:-1} \
+    "${_exps[@]}"
+}
+
+function ls-file() {
+  find-file "$@" | xargs -I{} basename {}
+}
+
+function ls-dir() {
+  FILE_TYPE=d find-file "$@" | xargs -I{} basename {}
+}
+
+function ls-link() {
+  FILE_TYPE=l find-file "$@" | xargs -I{} basename {}
+}
+
 function cdsd() {
   local _dir="."
   if [[ $# -gt 0 ]]; then
     _dir="$1"
     shift
   fi
-  local _sub_dir=$( ls -F "$_dir" 2>/dev/null | grep '[/@]$' | sed 's:@$::g' | fuzzy-finder "$@")
+  local _sub_dir=$( ls-dir "$_dir" 2>/dev/null | fuzzy-finder "$@")
   if [[ -n "$_sub_dir" ]]; then
     cd "$_dir/$_sub_dir"
   fi
@@ -198,7 +224,14 @@ function cdpp() {
 }
 
 function fff() {
-  local _file=$( ls -r | fzf --bind "$FZF_PREVIEW_BINDING" --preview-window right:70% --preview "head -$LINES {}" -q "$@" )
+  declare -a _options
+  _options=( --bind "$FZF_PREVIEW_BINDING" )
+  _options=( $_options --preview-window right:70% )
+  _options=( $_options --preview "head -$LINES {}" --tac )
+  if [[ $# -gt 0 ]]; then
+    _options=( $_options -q "$@" )
+  fi
+  local _file=$( ls-file | fzf "${_options[@]}")
   if [[ -n "$_file" ]]; then
     less "$_file"
   fi
