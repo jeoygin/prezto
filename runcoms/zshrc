@@ -198,7 +198,7 @@ function cdpp() {
 }
 
 function fff() {
-  local _file=$( ls -r | fzf --bind "$FZF_PREVIEW_BINDING" --preview-window right:70% --preview "head -$LINES {}" "$@" )
+  local _file=$( ls -r | fzf --bind "$FZF_PREVIEW_BINDING" --preview-window right:70% --preview "head -$LINES {}" -q "$@" )
   if [[ -n "$_file" ]]; then
     less "$_file"
   fi
