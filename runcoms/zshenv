@@ -19,7 +19,7 @@ ostype() { echo $OSTYPE | tr '[A-Z]' '[a-z]'; }
 SHELL_PLATFORM='unknown'
 case "$(ostype)" in
   *'linux'*  ) SHELL_PLATFORM='linux' ;;
-  *'darwin'* ) SHELL_PLATFORM='osx' ;;
+  *'darwin'* ) SHELL_PLATFORM='mac' ;;
   *'bsd'*    ) SHELL_PLATFORM='bsd' ;;
 esac
 export SHELL_PLATFORM
