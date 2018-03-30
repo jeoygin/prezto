@@ -13,7 +13,7 @@ fzf-gf() {
   git -c color.status=always status --short |
   fzf-down -m --ansi --nth 2..,.. \
     --bind "${FZF_PREVIEW_BINDING:-$FZF_PREVIEW_DEFAULT_BINDING}" \
-    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -'$LINES |
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
   cut -c4- | sed 's/.* -> //'
 }
 
@@ -45,6 +45,17 @@ fzf-gh() {
   grep -o "[a-f0-9]\{7,\}"
 }
 
+fzf-gw() {
+  is_in_git_repo || return
+  local _dest_branch=${1:-HEAD}
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-down --ansi --no-sort --reverse --multi \
+    --bind "${FZF_PREVIEW_BINDING:-$FZF_PREVIEW_DEFAULT_BINDING}" \
+    --header "Diff to $_dest_branch" \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs -I{} git diff --color=always {}..'"$_dest_branch"' | head -500' |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
 fzf-gr() {
   is_in_git_repo || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
@@ -70,5 +81,5 @@ bind-git-helper() {
   done
 }
 
-bind-git-helper f b t r h
+bind-git-helper f b t r h w
 unset -f bind-git-helper
