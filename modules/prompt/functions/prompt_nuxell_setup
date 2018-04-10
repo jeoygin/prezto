@@ -32,7 +32,7 @@ function prompt_nuxell_precmd {
 function prompt_nuxell_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
-  prompt_opts=(cr percent subst)
+  prompt_opts=(cr percent sp subst)
 
   # Load required functions.
   autoload -Uz add-zsh-hook
@@ -85,7 +85,7 @@ function prompt_nuxell_setup {
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # Define prompts.
-  PROMPT="${_prompt_nuxell_colors[5]}%~%f
+  PROMPT="${_prompt_nuxell_colors[1]}[${_prompt_nuxell_colors[5]}%~${_prompt_nuxell_colors[1]}]%f
 ${_prompt_nuxell_colors[3]}%n%f at ${_prompt_nuxell_colors[2]}%m%f "'${vcs_info_msg_0_}'"
 "'$python_info[virtualenv]'"$ "
   RPROMPT='${_prompt_nuxell_colors[1]}[${_prompt_nuxell_colors[5]}%D{%H:%M:%S}${_prompt_nuxell_colors[1]}]%f'
