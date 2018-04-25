@@ -25,6 +25,7 @@ esac
 export SHELL_PLATFORM
 
 java_homes=(
+  /Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
   /Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
   /usr/java/jdk
 )
