@@ -17,6 +17,21 @@ fzf-gf() {
   cut -c4- | sed 's/.* -> //'
 }
 
+fzf-gg() {
+  is_in_git_repo || return
+  local _files=$( git -c color.status=always status --short |
+  fzf-down -m --ansi --nth 2..,.. \
+    --bind "${FZF_PREVIEW_BINDING:-$FZF_PREVIEW_DEFAULT_BINDING}" \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+  cut -c4- | sed 's/.* -> //' )
+  if [[ -n "$_files" ]]; then
+    echo "$_files" | while read file
+    do
+      git add "$file"
+    done
+  fi
+}
+
 fzf-gb() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
@@ -81,5 +96,5 @@ bind-git-helper() {
   done
 }
 
-bind-git-helper f b t r h w
+bind-git-helper f g b t r h w
 unset -f bind-git-helper
