@@ -89,7 +89,7 @@ export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
 export PYTHONPATH="$HOME/local/lib/python2.7/site-packages"
 
 export FZF_DEFAULT_OPTS='--height 50% --reverse --border'
-export FZF_PREVIEW_BINDING='ctrl-j:preview-down,ctrl-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-space:toggle-preview,alt-enter:toggle-preview-wrap'
+export FZF_PREVIEW_BINDING='ctrl-j:preview-down,ctrl-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-space:toggle-preview,alt-enter:toggle-preview-wrap,ctrl-v:page-down,alt-v:page-up'
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
