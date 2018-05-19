@@ -1,4 +1,4 @@
-export FZF_PREVIEW_DEFAULT_BINDING="ctrl-j:preview-down,ctrl-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-space:toggle-preview,alt-enter:toggle-preview-wrap"
+export FZF_PREVIEW_DEFAULT_BINDING="ctrl-j:preview-down,ctrl-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,ctrl-space:toggle-preview,alt-enter:toggle-preview-wrap,ctrl-v:page-down,alt-v:page-up"
 
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
