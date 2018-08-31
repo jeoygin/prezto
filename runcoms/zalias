@@ -72,3 +72,4 @@ alias unbrew='export PATH=${PATH//\.linuxbrew/}'
 alias 7zpass='7z a -ms=on -mhe=on -p'
 
 alias ff='fuzzy-finder'
+alias lg='lazygit'
