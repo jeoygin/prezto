@@ -61,7 +61,7 @@ function activate-python() {
   else
     source ~/local/bin/virtualenvwrapper.sh
   fi
-  workon python3
+  workon python37
 }
 function activate-rvm() {
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
