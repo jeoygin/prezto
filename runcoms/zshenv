@@ -27,6 +27,7 @@ export SHELL_PLATFORM
 java_homes=(
   /Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
   /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home
+  /usr/lib/jvm/java
   /usr/java/jdk
 )
 for h in $java_homes
